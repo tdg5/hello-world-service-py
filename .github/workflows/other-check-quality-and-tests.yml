@@ -5,7 +5,7 @@ on:
     branches-ignore: [main]
 
 jobs:
-  style-test-and-build:
+  style-and-test:
     name: Test, build, and publish the package
     runs-on: ubuntu-latest
 
@@ -33,8 +33,7 @@ jobs:
             exit 1
           fi
 
-      - name: Run tests and build package
+      - name: Run tests
         run: |
           source venv/bin/activate
           pytest
-          python -m build

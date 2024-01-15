@@ -30,11 +30,10 @@ jobs:
           source venv/bin/activate
           make style
 
-      - name: Run tests and build application
+      - name: Run tests
         run: |
           source venv/bin/activate
           pytest
-          python -m build
 
       - name: Checkout tdg5/github-action-pack
         uses: actions/checkout@v4
