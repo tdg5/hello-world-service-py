@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -eo pipefail
+
+APP_NAME_KEBAB_CASE="hello-world-api-py"
+APP_NAME_SCREAMING_SNAKE_CASE="$(\
+  echo -n "$APP_NAME_KEBAB_CASE" | tr '[:lower:]' '[:upper:]' | tr '-' '_'\
+)"
+
+# From https://stackoverflow.com/a/4774063
+REPO_DIR="$( cd -- "$(dirname "$0")/.." >/dev/null 2>&1 ; pwd -P )"
+
+if [ -n "$REGISTRY" ]; then
+  REGISTRY_PREFIX="$REGISTRY/"
+else
+  REGISTRY_PREFIX=""
+fi
+
+IMAGE_NAME="${REGISTRY_PREFIX}${APP_NAME_KEBAB_CASE}"
+LATEST_TAG="${IMAGE_NAME}:latest"
+
+APP_GIT_REF="$(git rev-parse HEAD | tr -d '\n')"
+GIT_REF_TAG="${IMAGE_NAME}:${APP_GIT_REF}"
+
+APP_VERSION="$(cat "${REPO_DIR}/VERSION" | tr -d '\n')"
+VERSION_TAG="${IMAGE_NAME}:${APP_VERSION}"
+
+docker build \
+  --build-arg "${APP_NAME_SCREAMING_SNAKE_CASE}_GIT_REF=${APP_GIT_REF}" \
+  --build-arg "${APP_NAME_SCREAMING_SNAKE_CASE}_VERSION=${APP_VERSION}" \
+  --tag "$GIT_REF_TAG" \
+  --tag "$LATEST_TAG" \
+  --tag "$VERSION_TAG" \
+  "$REPO_DIR"
