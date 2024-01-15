@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -eo pipefail
+
+# From https://stackoverflow.com/a/4774063
+REPO_DIR="$( cd -- "$(dirname "$0")/.." >/dev/null 2>&1 ; pwd -P )"
+
+export \
+  HELLO_WORLD_API_PY_GIT_REF=$(git rev-parse HEAD) \
+  HELLO_WORLD_API_PY_VERSION=$(cat "${REPO_DIR}/VERSION" | tr -d '\n')
+
+python -m hello_world_api_py.entry
