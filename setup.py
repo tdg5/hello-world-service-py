@@ -33,7 +33,7 @@ _dev_dependencies = [
 
 def _setup_packages() -> List:
     default_packages = [
-        "hello_world_api",
+        "hello_world_api_py",
     ]
     return find_packages(
         ".",
@@ -66,7 +66,7 @@ def _setup_long_description() -> Tuple[str, str]:
 
 
 setup(
-    name="hello_world_api",
+    name="hello_world_api_py",
     version=VERSION,
     author="Danny Guinther",
     author_email="dannyguinther@gmail.com",

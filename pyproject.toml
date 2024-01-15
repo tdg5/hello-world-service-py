@@ -8,11 +8,11 @@ markers = ["integration_test: marks tests as integration tests (deselect with '-
 [tool.black]
 line-length = 88
 target-version = ["py39"]
-include = "hello_world_api(_test)?/.*\\.py$"
+include = "hello_world_api_py(_test)?/.*\\.py$"
 
 [tool.isort]
 include_trailing_comma = true
-known_first_party = ["hello_world_api", "hello_world_api_test"]
+known_first_party = ["hello_world_api_py", "hello_world_api_py_test"]
 line_length = 88
 lines_after_imports = 2
 multi_line_output = 3

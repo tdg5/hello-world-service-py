@@ -11,13 +11,13 @@ repos:
         name: black
         language: system
         entry: black
-        args: [ "hello_world_api", "hello_world_api_test" ]
+        args: [ "hello_world_api_py", "hello_world_api_py_test" ]
         types: [ python ]
       - id: flake8
         name: flake8
         language: python
         entry: flake8
-        args: [ "hello_world_api", "hello_world_api_test" ]
+        args: [ "hello_world_api_py", "hello_world_api_py_test" ]
         types: [ python ]
         additional_dependencies:
           - darglint
@@ -32,12 +32,12 @@ repos:
         name: Mypy check
         entry: mypy
         language: system
-        args: [ "hello_world_api", "hello_world_api_test" ]
+        args: [ "hello_world_api_py", "hello_world_api_py_test" ]
         pass_filenames: false
       - id: isort
         name: isort
         entry: isort
-        args: [ "hello_world_api", "hello_world_api_test" ]
+        args: [ "hello_world_api_py", "hello_world_api_py_test" ]
         language: system
       - id: safety-production-dependencies-check
         name: Safety production dependencies check
