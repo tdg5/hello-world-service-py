@@ -35,6 +35,10 @@ jobs:
           source venv/bin/activate
           pytest
 
+      - name: Build application image
+        run: |
+          bin/docker-build
+
       - name: Checkout tdg5/github-action-pack
         uses: actions/checkout@v4
         with:
