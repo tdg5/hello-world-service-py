@@ -68,9 +68,10 @@ ruamel.yaml==0.18.5
 ruamel.yaml.clib==0.2.8
 safety==2.3.4
 SecretStorage==3.3.3
-service_oriented==0.0.2a2
+service_oriented==0.0.2a4
 toml==0.10.2
 tomli==2.0.1
+types-PyYAML==6.0.12.12
 typing_extensions==4.9.0
 urllib3==2.1.0
 virtualenv==20.25.0

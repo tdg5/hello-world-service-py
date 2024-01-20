@@ -5,6 +5,10 @@ set -eo pipefail
 # From https://stackoverflow.com/a/4774063
 REPO_DIR="$( cd -- "$(dirname "$0")/.." >/dev/null 2>&1 ; pwd -P )"
 
+if [ -n "$YAML_CONFIG_PATH" ]; then
+  export HELLO_WORLD_API_PY_YAML_CONFIG_PATH="$YAML_CONFIG_PATH"
+fi
+
 export \
   HELLO_WORLD_API_PY_GIT_REF=$(git rev-parse HEAD) \
   HELLO_WORLD_API_PY_VERSION=$(cat "${REPO_DIR}/VERSION" | tr -d '\n')
