@@ -3,17 +3,9 @@ from tempfile import NamedTemporaryFile, TemporaryDirectory
 
 import pytest
 from pydantic import ValidationError
-from service_oriented.deployment_environment import DeploymentEnvironment
 
 from hello_world_api_py.app.config import Config
-
-
-TEST_DEPLOYMENT_ENVIRONMENT = DeploymentEnvironment(
-    identifier="test",
-    region="test",
-    stage="test",
-    vendor="test",
-)
+from hello_world_api_py_test.test_helpers import TEST_DEPLOYMENT_ENVIRONMENT
 
 
 def test_deployment_environment_is_accessible() -> None:

@@ -13,4 +13,4 @@ export \
   HELLO_WORLD_API_PY_GIT_REF=$(git rev-parse HEAD) \
   HELLO_WORLD_API_PY_VERSION=$(cat "${REPO_DIR}/VERSION" | tr -d '\n')
 
-python -m hello_world_api_py.entry
+python -m hello_world_api_py.main

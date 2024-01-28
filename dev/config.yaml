@@ -1,0 +1,6 @@
+deployment_environment:
+  identifier: dev
+  region: us-east
+  stage: dev
+  vendor: local
+entry_point: api
