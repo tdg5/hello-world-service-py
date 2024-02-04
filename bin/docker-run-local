@@ -9,10 +9,17 @@ if [ -z "$TAG" ]; then
   TAG="latest"
 fi
 
+if [ -z "$YAML_CONFIG_PATH" ]; then
+  echo "WARNING: Using dev/config.yaml config. This may not work."
+  YAML_CONFIG_PATH="/app/dev/config.yaml"
+fi
+
 docker run \
   --env "HELLO_WORLD_API_PY_GIT_REF=$(git rev-parse HEAD)" \
   --env "HELLO_WORLD_API_PY_VERSION=$(cat "${REPO_DIR}/VERSION" | tr -d '\n')" \
+  --env "HELLO_WORLD_API_PY_YAML_CONFIG_PATH=${YAML_CONFIG_PATH}" \
   --interactive \
   --rm \
   --tty \
+  --volume "${REPO_DIR}/dev:/app/dev" \
   "hello-world-api-py:$TAG"

@@ -19,4 +19,4 @@ ENV PYTHONPATH=/app
 
 ENTRYPOINT ["python"]
 
-CMD ["-m", "hello_world_api_py.entry"]
+CMD ["-m", "hello_world_api_py.main"]
