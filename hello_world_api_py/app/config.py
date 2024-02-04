@@ -6,4 +6,4 @@ class Config(
     env_nested_delimiter="__",
     env_prefix="HELLO_WORLD_API_PY_",
 ):
-    pass
+    logging_config_yaml_path: str

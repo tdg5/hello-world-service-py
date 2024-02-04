@@ -12,6 +12,7 @@ def test_deployment_environment_is_accessible() -> None:
     config = Config(
         deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
         entry_point="test",
+        logging_config_yaml_path="logging_config.yaml",
     )
     deployment_environment = config.deployment_environment
     assert TEST_DEPLOYMENT_ENVIRONMENT == deployment_environment
@@ -19,11 +20,37 @@ def test_deployment_environment_is_accessible() -> None:
 
 def test_deployment_environment_is_required() -> None:
     with pytest.raises(ValidationError) as exinfo:
-        Config(entry_point="test")
+        Config(
+            entry_point="test",
+            logging_config_yaml_path="logging_config.yaml",
+        )
     assert ValidationError == exinfo.type
     exception_message = str(exinfo.value)
     assert "1 validation error for Config" in exception_message
     assert "deployment_environment" in exception_message
+    assert "Field required" in exception_message
+
+
+def test_logging_config_yaml_path_is_accessible() -> None:
+    logging_config_yaml_path = "logging_config.yaml"
+    config = Config(
+        deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
+        entry_point="test",
+        logging_config_yaml_path=logging_config_yaml_path,
+    )
+    assert logging_config_yaml_path == config.logging_config_yaml_path
+
+
+def test_logging_config_yaml_path_is_required() -> None:
+    with pytest.raises(ValidationError) as exinfo:
+        Config(
+            deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
+            entry_point="test",
+        )
+    assert ValidationError == exinfo.type
+    exception_message = str(exinfo.value)
+    assert "1 validation error for Config" in exception_message
+    assert "logging_config_yaml_path" in exception_message
     assert "Field required" in exception_message
 
 
@@ -32,6 +59,7 @@ def test_yaml_config_path_is_accessible() -> None:
     config = Config(
         deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
         entry_point="test",
+        logging_config_yaml_path="logging_config.yaml",
         yaml_config_path=yaml_config_path,
     )
     assert yaml_config_path == config.yaml_config_path
@@ -41,6 +69,7 @@ def test_yaml_config_path_is_optional() -> None:
     config = Config(
         deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
         entry_point="test",
+        logging_config_yaml_path="logging_config.yaml",
     )
     assert config.yaml_config_path is None
 
@@ -89,6 +118,7 @@ def test_setting_source_priorities() -> None:
                     entry_point="test",
                     layer_one="init",
                     deployment_environment=TEST_DEPLOYMENT_ENVIRONMENT,
+                    logging_config_yaml_path="logging_config.yaml",
                     yaml_config_path=yaml_file.name,
                 )
                 assert "init" == config.layer_one

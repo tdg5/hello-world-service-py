@@ -1,6 +1,8 @@
+# Local paths are relative to the repository root
 deployment_environment:
   identifier: dev
   region: us-east
   stage: dev
   vendor: local
 entry_point: api
+logging_config_yaml_path: dev/logging_config.yaml

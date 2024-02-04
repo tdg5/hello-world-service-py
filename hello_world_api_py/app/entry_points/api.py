@@ -1,4 +1,10 @@
+import logging
+
 from hello_world_api_py.app.config import Config
+from hello_world_api_py.app.containers import RootContainer
+
+
+logger = logging.getLogger(__name__)
 
 
 class ApiEntryPoint:
@@ -6,4 +12,6 @@ class ApiEntryPoint:
         self.config = config
 
     def run(self) -> None:
-        print("Hello, world!")
+        container = RootContainer(config=self.config)
+        container.init_resources()
+        logger.info("Hello, world!")
