@@ -1,4 +1,4 @@
-FROM python:3.11.1-bullseye
+FROM python:3.12.1-bullseye
 
 ARG HELLO_WORLD_API_PY_GIT_REF
 ARG HELLO_WORLD_API_PY_VERSION

@@ -10,7 +10,7 @@ with open(VERSION_PATH, encoding="utf-8", mode="r") as f:
     VERSION = f.read().strip()
 
 _dependencies = [
-    "service-oriented==0.0.2a15",
+    "service-oriented==0.0.2a17",
 ]
 
 _dev_dependencies = [

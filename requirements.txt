@@ -9,7 +9,6 @@ charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
 cryptography==41.0.7
-dependency-injector==4.41.0
 distlib==0.3.8
 dlint==0.14.1
 docopt==0.6.2
@@ -70,8 +69,7 @@ ruamel.yaml==0.18.5
 ruamel.yaml.clib==0.2.8
 safety==2.3.4
 SecretStorage==3.3.3
-service_oriented==0.0.2a15
-six==1.16.0
+service_oriented==0.0.2a17
 toml==0.10.2
 tomli==2.0.1
 types-PyYAML==6.0.12.12
