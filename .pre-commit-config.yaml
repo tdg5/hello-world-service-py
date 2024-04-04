@@ -11,12 +11,12 @@ repos:
         name: black
         language: system
         entry: black
-        args: ["hello_world_api_py", "hello_world_api_py_test"]
+        args: ["--preview"]
         types: [python]
       - id: flake8
         name: flake8
         language: python
-        entry: flake8
+        entry: flake8p
         args: ["hello_world_api_py", "hello_world_api_py_test"]
         types: [python]
         additional_dependencies:
