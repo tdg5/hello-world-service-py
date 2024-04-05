@@ -1,6 +1,56 @@
 [build-system]
 build-backend = "setuptools.build_meta"
-requires = ["setuptools>=69"]
+requires = [
+  "setuptools>=69",
+  "setuptools-scm>=8.0.4",
+
+]
+
+[project]
+authors = [{name = "Danny Guinther"}]
+classifiers = [
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.9",
+]
+dependencies = [
+  "service-oriented==0.0.2a28",
+]
+description = "Simple API server written in python"
+dynamic = ["version"]
+license = {text = "MIT"}
+name = "hello-world-api-py"
+readme = "README.md"
+requires-python = ">3.9.0"
+
+[project.optional-dependencies]
+dev = [
+  "black~=24.2.0",
+  "dlint~=0.14.1",
+  "flake8-comprehensions~=3.14.0",
+  "flake8-eradicate~=1.5.0",
+  "flake8-pyproject~=1.2.3",
+  "flake8-spellcheck~=0.28.0",
+  "flake8-typing-imports~=1.15.0",
+  "flake8~=7.0.0",
+  "isort~=5.13.2",
+  "mypy~=1.8.0",
+  "pep8-naming~=0.13.3",
+  "pre-commit~=3.6.0",
+  "pytest-watcher~=0.4.2",
+  "pytest~=7.4.0",
+  "safety==2.3.4",
+]
+all = ["hello-world-api-py[dev]"]
+
+[project.urls]
+Homepage = "https://github.com/tdg5/hello-world-api-py"
+Source = "https://github.com/tdg5/hello-world-api-py"
+Tracker = "https://github.com/tdg5/hello-world-api-py/issues"
 
 [tool.black]
 include = "hello_world_api_py(_test)?/.*\\.py$"
@@ -37,3 +87,12 @@ init_forbid_extra = true
 
 [tool.pytest.ini_options]
 markers = ["integration_test: marks tests as integration tests (deselect with '-m \"not integration_test\"')"]
+
+[tool.setuptools.packages.find]
+include = [
+  "hello_world_api_py",
+]
+where = ["."]
+
+[tool.setuptools_scm]
+version_file = "hello_world_api_py/__version__.py"

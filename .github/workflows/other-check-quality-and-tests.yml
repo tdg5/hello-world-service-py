@@ -45,7 +45,9 @@ jobs:
             exit 1
           fi
 
-      - name: Run tests
+      - name: Run tests and build
         run: |
           source venv/bin/activate
           pytest
+          export SETUPTOOLS_SCM_PRETEND_VERSION_FOR_HELLO_WORLD_API_PY="$(cat VERSION)"
+          python -m build
