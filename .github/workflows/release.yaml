@@ -1,0 +1,90 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        default: '1.2.3'
+        description: 'Release version'
+        required: true
+
+jobs:
+  test-and-build-and-publish-and-release:
+    env:
+      VERSION: ${{ github.event.inputs.version }}
+    name: Test, build, publish, and release the package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT_GITHUB_ACTIONS }}
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      - name: Check requirements.txt is up to date
+        run: |
+          source venv/bin/activate
+          pip install .[all]
+          pip uninstall -y hello-world-api-py
+          pip freeze > requirements.txt
+
+          if ! `git diff --quiet`; then
+            echo "pip freeze caused file changes, failing!"
+            git diff
+            exit 1
+          fi
+
+      - name: Check style
+        run: |
+          source venv/bin/activate
+          make style
+
+          if ! `git diff --quiet`; then
+            echo "make style caused file changes, failing!"
+            git diff
+            exit 1
+          fi
+
+      - name: Run tests and build package
+        run: |
+          source venv/bin/activate
+          coverage run -m pytest
+          coverage report | tee .meta/coverage/report.txt
+          coverage-badge -f -o .meta/coverage/badge.svg
+          python -m build
+
+      - env:
+          APP_VERSION: "$VERSION"
+        name: Build application image
+        run: |
+          bin/docker-build
+          # TODO: push to image repository
+
+      - name: Configure git actor
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - env:
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_ACTIONS }}
+          RELEASE_NAME: v${{ github.event.inputs.version }}
+        name: Create and push tag for published version
+        run: |
+          git tag -m "$RELEASE_NAME" "$RELEASE_NAME"
+          git push origin "$RELEASE_NAME"
+
+          gh release create \
+            --generate-notes \
+            --target "$GITHUB_REF" \
+            --title "$RELEASE_NAME" \
+            "$RELEASE_NAME"

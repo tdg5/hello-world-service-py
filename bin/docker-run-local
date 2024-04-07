@@ -16,7 +16,7 @@ fi
 
 docker run \
   --env "HELLO_WORLD_API_PY_GIT_REF=$(git rev-parse HEAD)" \
-  --env "HELLO_WORLD_API_PY_VERSION=$(cat "${REPO_DIR}/VERSION" | tr -d '\n')" \
+  --env "HELLO_WORLD_API_PY_VERSION=$($REPO_DIR/bin/print-version | tr -d '\n')" \
   --env "HELLO_WORLD_API_PY_YAML_CONFIG_PATH=${YAML_CONFIG_PATH}" \
   --interactive \
   --rm \

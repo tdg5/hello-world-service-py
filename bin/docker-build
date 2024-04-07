@@ -22,7 +22,9 @@ LATEST_TAG="${IMAGE_NAME}:latest"
 APP_GIT_REF="$(git rev-parse HEAD | tr -d '\n')"
 GIT_REF_TAG="${IMAGE_NAME}:${APP_GIT_REF}"
 
-APP_VERSION="$(cat "${REPO_DIR}/VERSION" | tr -d '\n')"
+if [ -z "$APP_VERSION" ]; then
+  APP_VERSION="$($REPO_DIR/bin/print-version | tr -d '\n')"
+fi
 VERSION_TAG="${IMAGE_NAME}:${APP_VERSION}"
 
 docker build \

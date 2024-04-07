@@ -1,12 +1,12 @@
-name: Test, build, and publish the application
+name: Test, build, and publish the package
 
 on:
   push:
     branches: [main]
 
 jobs:
-  test-build-and-publish:
-    name: Test, build, and publish the application
+  test-and-build-and-update-metadata:
+    name: Test, build, and publish the package
     runs-on: ubuntu-latest
 
     steps:
@@ -31,8 +31,10 @@ jobs:
           pip install .[all]
           pip uninstall -y hello-world-api-py
           pip freeze > requirements.txt
+
           if ! `git diff --quiet`; then
             echo "pip freeze caused file changes, failing!"
+            git diff
             exit 1
           fi
 
@@ -40,15 +42,20 @@ jobs:
         run: |
           source venv/bin/activate
           make style
+
           if ! `git diff --quiet`; then
             echo "make style caused file changes, failing!"
+            git diff
             exit 1
           fi
 
-      - name: Run tests
+      - name: Run tests and build package
         run: |
           source venv/bin/activate
-          pytest
+          coverage run -m pytest
+          coverage report | tee .meta/coverage/report.txt
+          coverage-badge -f -o .meta/coverage/badge.svg
+          python -m build
 
       - name: Build application image
         run: |
@@ -58,31 +65,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: .github/actions/tdg5/github-action-pack
-          ref: v0.0.4
+          ref: v0.0.5
           repository: tdg5/github-action-pack
 
-      - name: Increment version
-        uses: ./.github/actions/tdg5/github-action-pack/packages/increment-version-file-action/src
+      - name: Commit and push code coverage snapshot
+        uses: ./.github/actions/tdg5/github-action-pack/packages/stage-files-and-commit-and-push-action/src
         with:
           authorEmail: dannyguinther+spamburglar@gmail.com
           authorName: Spamburglar
-          commitMessage: "[skip actions] Increment version for next development cycle"
-          versionFilePath: VERSION
-          versionFormat: python
-
-      - name: Publish application to image repository
-        env:
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-          TWINE_USERNAME: __token__
-        run: |
-          source venv/bin/activate
-          echo "TODO"
-
-      # Add the tag after publishing the application so it is more likely that we
-      # end up with an application without a tag than a tag without an application.
-      - name: Create and push tag for published version
-        run: |
-          VERSION="$(git show HEAD~1:VERSION)"
-          TAG_NAME="v${VERSION}"
-          git tag "$TAG_NAME" HEAD~1
-          git push origin "$TAG_NAME"
+          commitMessage: "[skip actions] Update code coverage snapshot"
+          optionalFilePaths: |
+            .meta/coverage/badge.svg
+            .meta/coverage/report.txt

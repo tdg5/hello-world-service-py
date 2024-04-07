@@ -30,6 +30,8 @@ requires-python = ">3.9.0"
 [project.optional-dependencies]
 dev = [
   "black~=24.2.0",
+  "coverage-badge~=1.1.0",
+  "coverage~=7.4.4",
   "dlint~=0.14.1",
   "flake8-comprehensions~=3.14.0",
   "flake8-eradicate~=1.5.0",
@@ -44,6 +46,7 @@ dev = [
   "pytest-watcher~=0.4.2",
   "pytest~=7.4.0",
   "safety==2.3.4",
+  "setuptools-scm>=8.0.4",
 ]
 all = ["hello-world-api-py[dev]"]
 
