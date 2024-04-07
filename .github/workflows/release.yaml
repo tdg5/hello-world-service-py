@@ -65,7 +65,7 @@ jobs:
 
       - env:
           APP_VERSION: ${{ github.event.inputs.version }}
-        name: pBuild application image
+        name: Build application image
         run: |
           bin/docker-build
           # TODO: push to image repository
