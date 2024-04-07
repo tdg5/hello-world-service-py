@@ -1,5 +1,5 @@
-Name                                               Stmts   Miss  Cover
-----------------------------------------------------------------------
+Name                                                Stmts   Miss  Cover
+-----------------------------------------------------------------------
 hello_world_service/__init__.py                         0      0   100%
 hello_world_service/app/application.py                  4      0   100%
 hello_world_service/app/config.py                       3      0   100%
@@ -11,5 +11,5 @@ hello_world_service_test/app/config_test.py            62      0   100%
 hello_world_service_test/import_test.py                 3      0   100%
 hello_world_service_test/test_helpers/__init__.py       2      0   100%
 hello_world_service_test/test_helpers/fixtures.py       2      0   100%
-----------------------------------------------------------------------
-TOTAL                                                102     10    90%
+-----------------------------------------------------------------------
+TOTAL                                                 102     10    90%
