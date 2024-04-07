@@ -49,13 +49,12 @@ jobs:
             exit 1
           fi
 
-      - name: Run tests and build package
+      - name: Run tests with coverage
         run: |
           source venv/bin/activate
           coverage run -m pytest
           coverage report | tee .meta/coverage/report.txt
           coverage-badge -f -o .meta/coverage/badge.svg
-          python -m build
 
       - name: Build application image
         run: |

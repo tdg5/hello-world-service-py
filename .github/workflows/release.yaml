@@ -61,7 +61,6 @@ jobs:
           coverage run -m pytest
           coverage report | tee .meta/coverage/report.txt
           coverage-badge -f -o .meta/coverage/badge.svg
-          python -m build
 
       - env:
           APP_VERSION: "$VERSION"
