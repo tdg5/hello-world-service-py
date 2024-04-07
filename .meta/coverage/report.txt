@@ -1,11 +1,10 @@
 Name                                                      Stmts   Miss  Cover
 -----------------------------------------------------------------------------
 hello_world_service/__init__.py                               0      0   100%
-hello_world_service/__version__.py                           11     11     0%
 hello_world_service/app/application.py                        4      0   100%
 hello_world_service/app/config.py                             3      0   100%
 hello_world_service/app/entry_points/__init__.py              0      0   100%
 hello_world_service/app/entry_points/api_entry_point.py      23      0   100%
-hello_world_service/main.py                                   6      6     0%
+hello_world_service/main.py                                   5      0   100%
 -----------------------------------------------------------------------------
-TOTAL                                                        47     17    64%
+TOTAL                                                        35      0   100%

@@ -63,7 +63,13 @@ line-length = 88
 target-version = ["py39"]
 
 [tool.coverage.run]
+omit = [
+  "hello_world_service/__version__.py",
+]
 source = ["hello_world_service"]
+
+[tool.coverage.report]
+fail_under = 98
 
 [tool.flake8]
 ignore = ["E203", "E251", "E701", "N805", "W503", "DAR101", "DAR201", "DAR301", "DAR401"]
