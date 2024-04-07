@@ -1,2 +1,3 @@
-# hello-world-api-py
-Simple API server written in python
+# hello-world-service
+
+Simple example service written in python.

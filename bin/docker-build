@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-APP_NAME_KEBAB_CASE="hello-world-api-py"
+APP_NAME_KEBAB_CASE="hello-world-service"
 APP_NAME_SCREAMING_SNAKE_CASE="$(\
   echo -n "$APP_NAME_KEBAB_CASE" | tr '[:lower:]' '[:upper:]' | tr '-' '_'\
 )"

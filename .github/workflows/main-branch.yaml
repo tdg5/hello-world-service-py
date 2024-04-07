@@ -30,7 +30,7 @@ jobs:
         run: |
           source venv/bin/activate
           pip install .[all]
-          pip uninstall -y hello-world-api-py
+          pip uninstall -y hello-world-service
           pip freeze > requirements.txt
 
           if ! `git diff --quiet`; then

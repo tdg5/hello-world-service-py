@@ -24,7 +24,7 @@ dependencies = [
 description = "Simple API server written in python"
 dynamic = ["version"]
 license = {text = "MIT"}
-name = "hello-world-api-py"
+name = "hello-world-service"
 readme = "README.md"
 requires-python = ">3.9.0"
 
@@ -49,15 +49,15 @@ dev = [
   "safety==2.3.4",
   "setuptools-scm>=8.0.4",
 ]
-all = ["hello-world-api-py[dev]"]
+all = ["hello-world-service[dev]"]
 
 [project.urls]
-Homepage = "https://github.com/tdg5/hello-world-api-py"
-Source = "https://github.com/tdg5/hello-world-api-py"
-Tracker = "https://github.com/tdg5/hello-world-api-py/issues"
+Homepage = "https://github.com/tdg5/hello-world-service-py"
+Source = "https://github.com/tdg5/hello-world-service-py"
+Tracker = "https://github.com/tdg5/hello-world-service-py/issues"
 
 [tool.black]
-include = "hello_world_api_py(_test)?/.*\\.py$"
+include = "hello_world_service(_test)?/.*\\.py$"
 line-length = 88
 target-version = ["py39"]
 
@@ -68,7 +68,7 @@ min_python_version = 3.9
 
 [tool.isort]
 include_trailing_comma = true
-known_first_party = ["hello_world_api_py", "hello_world_api_py_test"]
+known_first_party = ["hello_world_service", "hello_world_service_test"]
 line_length = 88
 lines_after_imports = 2
 multi_line_output = 3
@@ -94,9 +94,9 @@ markers = ["integration_test: marks tests as integration tests (deselect with '-
 
 [tool.setuptools.packages.find]
 include = [
-  "hello_world_api_py",
+  "hello_world_service",
 ]
 where = ["."]
 
 [tool.setuptools_scm]
-version_file = "hello_world_api_py/__version__.py"
+version_file = "hello_world_service/__version__.py"

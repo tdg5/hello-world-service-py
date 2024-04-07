@@ -4,8 +4,8 @@ from tempfile import NamedTemporaryFile, TemporaryDirectory
 import pytest
 from pydantic import ValidationError
 
-from hello_world_api_py.app.config import Config
-from hello_world_api_py_test.test_helpers import TEST_DEPLOYMENT_ENVIRONMENT
+from hello_world_service.app.config import Config
+from hello_world_service_test.test_helpers import TEST_DEPLOYMENT_ENVIRONMENT
 
 
 def test_deployment_environment_is_accessible() -> None:
@@ -83,12 +83,12 @@ class ConfigForTestingSourcePriorities(Config):
 
 
 def test_setting_source_priorities() -> None:
-    os.environ["HELLO_WORLD_API_PY_LAYER_ONE"] = "env"
-    os.environ["HELLO_WORLD_API_PY_LAYER_TWO"] = "env"
+    os.environ["HELLO_WORLD_SERVICE_LAYER_ONE"] = "env"
+    os.environ["HELLO_WORLD_SERVICE_LAYER_TWO"] = "env"
     with TemporaryDirectory() as secrets_dir:
         for config_name in ["layer_one", "layer_two", "layer_three"]:
             with open(
-                f"{secrets_dir}/hello_world_api_py_{config_name}", "w+"
+                f"{secrets_dir}/hello_world_service_{config_name}", "w+"
             ) as secret_file:
                 secret_file.write("secret")
         with NamedTemporaryFile(mode="w+") as yaml_file:
@@ -104,11 +104,11 @@ def test_setting_source_priorities() -> None:
             with NamedTemporaryFile(mode="w+") as dotenv_file:
                 dotenv_file.write(
                     """
-                    HELLO_WORLD_API_PY_LAYER_ONE=dotenv
-                    HELLO_WORLD_API_PY_LAYER_TWO=dotenv
-                    HELLO_WORLD_API_PY_LAYER_THREE=dotenv
-                    HELLO_WORLD_API_PY_LAYER_FOUR=dotenv
-                    HELLO_WORLD_API_PY_LAYER_FIVE=dotenv
+                    HELLO_WORLD_SERVICE_LAYER_ONE=dotenv
+                    HELLO_WORLD_SERVICE_LAYER_TWO=dotenv
+                    HELLO_WORLD_SERVICE_LAYER_THREE=dotenv
+                    HELLO_WORLD_SERVICE_LAYER_FOUR=dotenv
+                    HELLO_WORLD_SERVICE_LAYER_FIVE=dotenv
                     """
                 )
                 dotenv_file.flush()

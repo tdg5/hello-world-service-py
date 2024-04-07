@@ -2,8 +2,8 @@ from typing import Optional
 
 from service_oriented import DeploymentEnvironment
 
-from hello_world_api_py.app.config import Config
-from hello_world_api_py_test.test_helpers.fixtures import TEST_DEPLOYMENT_ENVIRONMENT
+from hello_world_service.app.config import Config
+from hello_world_service_test.test_helpers.fixtures import TEST_DEPLOYMENT_ENVIRONMENT
 
 
 def make_config(

@@ -1,4 +1,4 @@
-from hello_world_api_py.app.application import Application
+from hello_world_service.app.application import Application
 
 
 def test_api_endpoint_is_defined() -> None:

@@ -11,7 +11,7 @@ from service_oriented.services.logger_service import (
     LoggerServiceWithYamlLoggingConfig,
 )
 
-from hello_world_api_py.app.config import Config
+from hello_world_service.app.config import Config
 
 
 logger = logging.getLogger(__name__)

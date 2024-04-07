@@ -160,4 +160,4 @@ cython_debug/
 #.idea/
 
 # Auto-generated
-hello_world_api_py/__version__.py
+hello_world_service/__version__.py

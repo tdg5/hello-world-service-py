@@ -1,7 +1,7 @@
 from service_oriented.application import GenericMain
 
-from hello_world_api_py.app.application import Application
-from hello_world_api_py.app.config import Config
+from hello_world_service.app.application import Application
+from hello_world_service.app.config import Config
 
 
 class Main(GenericMain[Config, Application]):
