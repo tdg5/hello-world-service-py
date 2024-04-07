@@ -3,9 +3,8 @@ Name                                               Stmts   Miss  Cover
 hello_world_api_py/__init__.py                         0      0   100%
 hello_world_api_py/app/application.py                  4      0   100%
 hello_world_api_py/app/config.py                       3      0   100%
-hello_world_api_py/app/container.py                    9      3    67%
 hello_world_api_py/app/entry_points/__init__.py        0      0   100%
-hello_world_api_py/app/entry_points/api.py            11      4    64%
+hello_world_api_py/app/entry_points/api.py            23     10    57%
 hello_world_api_py_test/__init__.py                    0      0   100%
 hello_world_api_py_test/app/application_test.py        3      0   100%
 hello_world_api_py_test/app/config_test.py            62      0   100%
@@ -13,4 +12,4 @@ hello_world_api_py_test/import_test.py                 3      0   100%
 hello_world_api_py_test/test_helpers/__init__.py       2      0   100%
 hello_world_api_py_test/test_helpers/fixtures.py       2      0   100%
 ----------------------------------------------------------------------
-TOTAL                                                 99      7    93%
+TOTAL                                                102     10    90%
