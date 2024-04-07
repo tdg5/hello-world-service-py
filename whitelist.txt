@@ -4,5 +4,6 @@ exinfo
 initializer
 initializers
 pydantic
+rodi
 scm
 unparameterized

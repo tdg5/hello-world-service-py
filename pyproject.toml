@@ -18,7 +18,8 @@ classifiers = [
   "Programming Language :: Python :: 3.9",
 ]
 dependencies = [
-  "service-oriented==0.0.2a28",
+  "rodi~=2.0.6",
+  "service-oriented==0.0.4",
 ]
 description = "Simple API server written in python"
 dynamic = ["version"]

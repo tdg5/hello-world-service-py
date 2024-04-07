@@ -64,11 +64,12 @@ requests==2.31.0
 requests-toolbelt==1.0.0
 rfc3986==2.0.0
 rich==13.7.0
+rodi==2.0.6
 ruamel.yaml==0.18.5
 ruamel.yaml.clib==0.2.8
 safety==2.3.4
 SecretStorage==3.3.3
-service_oriented==0.0.2a28
+service_oriented==0.0.4
 setuptools-scm==8.0.4
 toml==0.10.2
 tomli==2.0.1
