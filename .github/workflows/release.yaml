@@ -63,8 +63,8 @@ jobs:
           coverage-badge -f -o .meta/coverage/badge.svg
 
       - env:
-          APP_VERSION: "$VERSION"
-        name: Build application image
+          APP_VERSION: ${{ github.event.inputs.version }}
+        name: pBuild application image
         run: |
           bin/docker-build
           # TODO: push to image repository
