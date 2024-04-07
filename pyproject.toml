@@ -62,6 +62,9 @@ include = "hello_world_service(_test)?/.*\\.py$"
 line-length = 88
 target-version = ["py39"]
 
+[tool.coverage.run]
+source = ["hello_world_service"]
+
 [tool.flake8]
 ignore = ["E203", "E251", "E701", "N805", "W503", "DAR101", "DAR201", "DAR301", "DAR401"]
 max-line-length = 88

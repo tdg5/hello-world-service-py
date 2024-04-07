@@ -1,17 +1,11 @@
-Name                                                                Stmts   Miss  Cover
----------------------------------------------------------------------------------------
-hello_world_service/__init__.py                                         0      0   100%
-hello_world_service/app/application.py                                  4      0   100%
-hello_world_service/app/config.py                                       3      0   100%
-hello_world_service/app/entry_points/__init__.py                        0      0   100%
-hello_world_service/app/entry_points/api_entry_point.py                23      0   100%
-hello_world_service_test/__init__.py                                    0      0   100%
-hello_world_service_test/app/application_test.py                        3      0   100%
-hello_world_service_test/app/config_test.py                            62      0   100%
-hello_world_service_test/app/entry_points/api_entry_point_test.py      37      1    97%
-hello_world_service_test/import_test.py                                 3      0   100%
-hello_world_service_test/test_helpers/__init__.py                       2      0   100%
-hello_world_service_test/test_helpers/factories.py                      9      0   100%
-hello_world_service_test/test_helpers/fixtures/__init__.py             13      3    77%
----------------------------------------------------------------------------------------
-TOTAL                                                                 159      4    97%
+Name                                                      Stmts   Miss  Cover
+-----------------------------------------------------------------------------
+hello_world_service/__init__.py                               0      0   100%
+hello_world_service/__version__.py                           11     11     0%
+hello_world_service/app/application.py                        4      0   100%
+hello_world_service/app/config.py                             3      0   100%
+hello_world_service/app/entry_points/__init__.py              0      0   100%
+hello_world_service/app/entry_points/api_entry_point.py      23      0   100%
+hello_world_service/main.py                                   6      6     0%
+-----------------------------------------------------------------------------
+TOTAL                                                        47     17    64%
