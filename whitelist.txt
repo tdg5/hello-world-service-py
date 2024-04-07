@@ -1,8 +1,7 @@
 dirname
 dotenv
 exinfo
-initializer
-initializers
+joinpath
 pydantic
 rodi
 scm

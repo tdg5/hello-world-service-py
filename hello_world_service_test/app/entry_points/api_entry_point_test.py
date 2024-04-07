@@ -1,0 +1,53 @@
+import logging
+from contextlib import contextmanager
+from logging import Logger
+from logging import config as logging_config
+from typing import Generator
+
+from pytest_mock import MockerFixture
+from rodi import Container
+from service_oriented.services.logger_service import (
+    LoggerService,
+    LoggerServiceWithYamlLoggingConfig,
+)
+
+from hello_world_service.app.entry_points.api_entry_point import ApiEntryPoint
+from hello_world_service_test.test_helpers import factories
+
+
+class DefaultLoggerService(LoggerService):
+    def get_logger(self, name: str) -> Logger:
+        # This keeps the type checker happy, but really, a test should patch
+        # this function on an instance for optimal control.
+        return logging.getLogger(name)
+
+
+class ApiEntryPointWithCustomContainer(ApiEntryPoint):
+    @contextmanager
+    def container(self) -> Generator[Container, None, None]:
+        try:
+            container = Container()
+            container.add_instance(DefaultLoggerService(), LoggerService)
+            yield container
+        finally:
+            pass
+
+
+def test_container_includes_a_logger_service(mocker: MockerFixture) -> None:
+    config = factories.config()
+    api_entry_point = ApiEntryPoint(config=config)
+    spy = mocker.spy(logging_config, "dictConfig")
+    with api_entry_point.container() as container:
+        assert 1 == spy.call_count
+        provider = container.build_provider()
+        logger_service = provider.get(LoggerService)
+        assert isinstance(logger_service, LoggerServiceWithYamlLoggingConfig)
+
+
+def test_run_logs_hello_world(mocker: MockerFixture) -> None:
+    config = factories.config()
+    mock_logger = mocker.MagicMock()
+    mocker.patch.object(DefaultLoggerService, "get_logger", return_value=mock_logger)
+    api_entry_point = ApiEntryPointWithCustomContainer(config=config)
+    api_entry_point.run()
+    mock_logger.info.assert_called_with("Hello, world!")
