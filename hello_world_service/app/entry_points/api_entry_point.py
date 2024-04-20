@@ -1,4 +1,3 @@
-import logging
 from contextlib import contextmanager
 from typing import Generator
 
@@ -12,9 +11,6 @@ from service_oriented.services.logger_service import (
 )
 
 from hello_world_service.app.config import Config
-
-
-logger = logging.getLogger(__name__)
 
 
 class ApiEntryPoint(AbstractCompositionRoot[Config, Container]):
